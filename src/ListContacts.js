@@ -3,12 +3,21 @@
  class ListContacts extends Component {
    render () {
      return (
-       <ol classNmae='contact-lists'>
+       <ol className='contact-lists'>
         {this.props.contacts.map((contact) => (
-          <li key={contact.id}>
-            {contact.name}
+          <li key={contact.id} className='contact-list-item'>
+            <div className='contact-avatar' style={{
+              backgroundImage: 'url(s{contact.avatarURL})'
+            }}/>
+            <div className='contact-details'>
+              <p>{contact.name}</p>
+              <p>{contact.email}</p>
+            </div>
+            <button className='contact-remove'>
+              Remove
+            </button>
           </li>
-        )}
+        ))}
        </ol>
      )
    }
