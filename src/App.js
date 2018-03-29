@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import ListContacts from './ListContacts'
 import CreateContact from './CreateContact'
 import * as ContactsAPI from './utils/ContactsAPI'
 
 class App extends Component {
   state = {
-    screen: 'create', //list, create
+    screen: 'list', //list, create
     contacts: []
   }
+
   componentDidMount() {
     ContactsAPI.getAll().then((contacts) => {
       this.setState({ contacts })
@@ -27,6 +28,9 @@ class App extends Component {
           <ListContacts
             onDeleteContact={this.removeContact}
             contacts={this.state.contacts}
+            onNavigate={() => {
+              this.setState({screen: 'create'})
+            }}
           />
         )}
         {this.state.screen === 'create' && (
